@@ -4,6 +4,7 @@ import Button from "react-bootstrap/Button";
 
 function Login(props) {
     console.log('tets')
+    console.log("tets");
     return (
         <div style={{ display: "flex", height: "80vh" }}>
             <SignIn />
