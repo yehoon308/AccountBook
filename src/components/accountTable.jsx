@@ -1,5 +1,5 @@
 import Table from "react-bootstrap/Table";
-import React from "react";
+import React, { useState } from "react";
 import EditValue from "./editValue";
 
 function AccountTable(props) {
@@ -7,6 +7,11 @@ function AccountTable(props) {
     const date = new Date(year, month, 0);
     return date.getDate();
   }
+
+  const [isOpen, setIsOpen] = useState(false);
+  const handleButtonClick = () => {
+    setIsOpen(true);
+  };
 
   function getSelectedDays(year, month) {
     const daysInMonth = getDaysInMonth(year, month);
@@ -52,7 +57,8 @@ function AccountTable(props) {
               <td></td>
               <td></td>
               <td>
-                <button onClick={EditValue}>수정</button>
+                <button onClick={handleButtonClick}>수정</button>
+                {isOpen ? <EditValue setIsOpen={setIsOpen} /> : null}
               </td>
               <td></td>
             </tr>

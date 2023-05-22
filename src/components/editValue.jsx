@@ -1,34 +1,52 @@
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
-import Placeholder from "react-bootstrap/Placeholder";
+import React from "react";
+import { Modal, Button, Form } from "react-bootstrap";
 
-function EditValue() {
+function EditValue(props) {
+  const handleClickEvent = (month) => {
+    props.setMonth(month);
+    props.setIsOpen(false);
+  };
+
   return (
-    <div className="d-flex justify-content-around">
-      <Card style={{ width: "18rem" }}>
-        <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
+    <div
+      className="modal show "
+      style={{ display: "block", position: "initial" }}
+    >
+      <Modal.Dialog>
+        <Modal.Header
+          closeButton
+          onHide={() => {
+            props.setIsOpen(false);
+          }}
+        >
+          <Modal.Title>값을 수정하세요</Modal.Title>
+        </Modal.Header>
 
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
-        <Card.Body>
-          <Placeholder as={Card.Title} animation="glow">
-            <Placeholder xs={6} />
-          </Placeholder>
-          <Placeholder as={Card.Text} animation="glow">
-            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{" "}
-            <Placeholder xs={6} /> <Placeholder xs={8} />
-          </Placeholder>
-          <Placeholder.Button variant="primary" xs={6} />
-        </Card.Body>
-      </Card>
+        <Modal.Body>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              flexDirection: "column",
+            }}
+          >
+            수입
+            <input style={{ width: "250px" }} />
+            지출
+            <input style={{ width: "250px" }} />
+            금액
+            <input style={{ width: "250px" }} />
+            구분
+            <input style={{ width: "250px" }} />
+            메모
+            <input style={{ width: "250px" }} />
+          </div>
+        </Modal.Body>
+
+        <Modal.Footer>
+          <Button>입력</Button>
+        </Modal.Footer>
+      </Modal.Dialog>
     </div>
   );
 }
