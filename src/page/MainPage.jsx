@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Main from "../components/main";
 
 function MainPage(props) {

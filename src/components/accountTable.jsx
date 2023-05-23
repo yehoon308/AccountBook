@@ -1,6 +1,11 @@
 import Table from "react-bootstrap/Table";
 import React, { useState } from "react";
 import EditValue from "./editValue";
+import Styled from "styled-components";
+
+const CenterTh = Styled.th`
+  text-align: center;
+`;
 
 function AccountTable(props) {
   function getDaysInMonth(year, month) {
@@ -37,30 +42,30 @@ function AccountTable(props) {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>일자</th>
-            <th>수입</th>
-            <th>지출</th>
-            <th>합계</th>
-            <th>구분</th>
-            <th>메모</th>
-            <th>수정</th>
-            <th>전월대비</th>
+            <CenterTh>일자</CenterTh>
+            <CenterTh>수입</CenterTh>
+            <CenterTh>지출</CenterTh>
+            <CenterTh>합계</CenterTh>
+            <CenterTh>구분</CenterTh>
+            <CenterTh>메모</CenterTh>
+            <CenterTh>수정</CenterTh>
+            <CenterTh>전월대비</CenterTh>
           </tr>
         </thead>
         <tbody>
           {selectedDays?.map((list, index) => (
             <tr>
-              <td>{`${list}일`}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>
+              <CenterTh>{`${list}일`}</CenterTh>
+              <CenterTh></CenterTh>
+              <CenterTh></CenterTh>
+              <CenterTh></CenterTh>
+              <CenterTh></CenterTh>
+              <CenterTh></CenterTh>
+              <CenterTh>
                 <button onClick={handleButtonClick}>수정</button>
                 {isOpen ? <EditValue setIsOpen={setIsOpen} /> : null}
-              </td>
-              <td></td>
+              </CenterTh>
+              <CenterTh></CenterTh>
             </tr>
           ))}
         </tbody>

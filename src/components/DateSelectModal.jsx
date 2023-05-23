@@ -1,8 +1,32 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
+import Styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 function DateSelectModal(props) {
+  const DateSelectModalWrapper = Styled.div`
+  position: fixed;
+   top: 0%;
+   left: 0%;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 9999;
+   animation: ${fadeIn} 0.3s ease;
+ `;
+
   const dateType = props.type ?? null;
 
   const year = props.year ?? null;
@@ -21,7 +45,12 @@ function DateSelectModal(props) {
     .fill()
     .map((_, index) => (
       <Button
-        style={{ width: "100px", marginTop: "20px" }}
+        style={{
+          width: "100px",
+          margin: "10px",
+
+          backgroundColor: "#f1b4a3",
+        }}
         key={index}
         onClick={() => handleClickEvent(index)}
       >
@@ -49,10 +78,7 @@ function DateSelectModal(props) {
     );
   }
   return (
-    <div
-      className="modal show "
-      style={{ display: "block", position: "initial" }}
-    >
+    <DateSelectModalWrapper className="modal show">
       <Modal.Dialog>
         <Modal.Header
           closeButton
@@ -67,130 +93,13 @@ function DateSelectModal(props) {
           )}
         </Modal.Header>
 
-        <Modal.Body>
-          <div>
-            {buttonGroups}
-            {/* <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("1")}
-            >
-              1월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("2")}
-            >
-              2월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("3")}
-            >
-              3월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("4")}
-            >
-              4월
-            </Button>
-          </div>
-          <hr />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexDirection: "row",
-            }}
-          >
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("5")}
-            >
-              5월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("6")}
-            >
-              6월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("7")}
-            >
-              7월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("8")}
-            >
-              8월
-            </Button>
-          </div>
-          <hr />
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "space-between",
-              flexDirection: "row",
-            }}
-          >
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("9")}
-            >
-              9월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("10")}
-            >
-              10월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("11")}
-            >
-              11월
-            </Button>
-            <Button
-              style={{
-                width: "60px",
-              }}
-              onClick={() => handleClickEvent("12")}
-            >
-              12월
-            </Button> */}
-          </div>
-          <hr />
-        </Modal.Body>
+        <Modal.Body>{buttonGroups}</Modal.Body>
 
-        <Modal.Footer></Modal.Footer>
+        <Modal.Footer>
+          <Button onClick={() => props.setIsOpen(false)}>닫기</Button>
+        </Modal.Footer>
       </Modal.Dialog>
-    </div>
+    </DateSelectModalWrapper>
   );
 }
 
