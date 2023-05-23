@@ -25,7 +25,7 @@ function AccountTable(props) {
   }
 
   // 예시: 2023년 5월의 일자를 가져옵니다.
-  const selectedYear = Number(props?.selectedYear);
+  const selectedYear = Number(props?.year);
   const selectedMonth = Number(props?.month);
   console.log(selectedYear, selectedMonth);
 

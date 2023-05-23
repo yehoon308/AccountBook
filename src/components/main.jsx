@@ -7,37 +7,35 @@ import Tab from "react-bootstrap/Tab";
 import AccountBook from "../view/AccountBook";
 
 function Main() {
-    return (
-        <Tab.Container id="left-tabs-example" defaultActiveKey="first">
-            <Row>
-                <Col sm={3}>
-                    <Nav variant="pills" className="flex-column">
-                        <Nav.Item>
-                            <Nav.Link eventKey="first">통계</Nav.Link>
-                        </Nav.Item>
+  return (
+    <Tab.Container id="left-tabs-example" defaultActiveKey="first">
+      <Row>
+        <Col sm={1}>
+          <Nav variant="pills" className="flex-column">
+            <Nav.Item>
+              <Nav.Link eventKey="first">통계</Nav.Link>
+            </Nav.Item>
 
-                        <Nav.Item>
-                            <Nav.Link eventKey="second">알람</Nav.Link>
-                        </Nav.Item>
-                        <Nav.Item>
-                            <Nav.Link eventKey="third">가계부</Nav.Link>
-                        </Nav.Item>
-                    </Nav>
-                </Col>
-                <Col sm={9}>
-                    <Tab.Content>
-                        <Tab.Pane eventKey="first">{/* <Sonnet /> */}</Tab.Pane>
-                        <Tab.Pane eventKey="second">
-                            {/* <Sonnet /> */}
-                        </Tab.Pane>
-                        <Tab.Pane eventKey="third">
-                            <AccountBook />
-                        </Tab.Pane>
-                    </Tab.Content>
-                </Col>
-            </Row>
-        </Tab.Container>
-    );
+            <Nav.Item>
+              <Nav.Link eventKey="second">알람</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="third">가계부</Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Col>
+        <Col sm={11}>
+          <Tab.Content>
+            <Tab.Pane eventKey="first">{/* <Sonnet /> */}</Tab.Pane>
+            <Tab.Pane eventKey="second">{/* <Sonnet /> */}</Tab.Pane>
+            <Tab.Pane eventKey="third">
+              <AccountBook />
+            </Tab.Pane>
+          </Tab.Content>
+        </Col>
+      </Row>
+    </Tab.Container>
+  );
 }
 
 export default Main;
