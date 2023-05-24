@@ -63,12 +63,12 @@ function AccountTable(props) {
               <CenterTh></CenterTh>
               <CenterTh>
                 <button onClick={handleButtonClick}>수정</button>
-                {isOpen ? <EditValue setIsOpen={setIsOpen} /> : null}
               </CenterTh>
               <CenterTh></CenterTh>
             </tr>
           ))}
         </tbody>
+        {isOpen ? <EditValue setIsOpen={setIsOpen} /> : null}
       </Table>
     </div>
   );

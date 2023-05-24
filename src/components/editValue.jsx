@@ -1,18 +1,39 @@
 import React from "react";
 import { Modal, Button, Form } from "react-bootstrap";
+import Styled, { keyframes } from "styled-components";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
 
 function EditValue(props) {
+  const EditValueModalWrapper = Styled.div`
+  position: fixed;
+   top: 0%;
+   left: 0%;
+   width: 100%;
+   height: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: rgba(0, 0, 0, 0.5);
+   z-index: 9999;
+   animation: ${fadeIn} 0.3s ease;
+ `;
+
   const handleClickEvent = (month) => {
     props.setMonth(month);
     props.setIsOpen(false);
   };
 
   return (
-    <div
-      className="modal show "
-      style={{ display: "block", position: "initial" }}
-    >
-      <Modal.Dialog>
+    <EditValueModalWrapper className="modal">
+      <Modal.Dialog style={{ backgroundColor: "white" }}>
         <Modal.Header
           closeButton
           onHide={() => {
@@ -47,7 +68,7 @@ function EditValue(props) {
           <Button>입력</Button>
         </Modal.Footer>
       </Modal.Dialog>
-    </div>
+    </EditValueModalWrapper>
   );
 }
 
