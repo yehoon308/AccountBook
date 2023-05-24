@@ -48,7 +48,7 @@ function AccountTable(props) {
             <CenterTh>합계</CenterTh>
             <CenterTh>구분</CenterTh>
             <CenterTh>메모</CenterTh>
-            <CenterTh>수정</CenterTh>
+            <CenterTh style={{ width: "80px" }}>수정</CenterTh>
             <CenterTh>전월대비</CenterTh>
           </tr>
         </thead>
