@@ -2,7 +2,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import React, { useState } from "react";
 
 function DropdownButton() {
-    const [isOpen, setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false); //이부분 isOpen은 안써도 되는지????
     const [selectedOption, setSelectedOption] = useState("카테고리");
 
     const handleOptionSelect = (option) => {
@@ -13,7 +13,11 @@ function DropdownButton() {
     return (
         <Dropdown>
             <Dropdown.Toggle
-                style={{ display: "flex", justifyContent: "center" }}
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    flexDirection: "row", //드롭다운 화살표 중앙정렬하는법
+                }}
                 variant="Primary"
                 id="dropdown-basic"
             >
