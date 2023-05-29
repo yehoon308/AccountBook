@@ -14,9 +14,7 @@ const fadeIn = keyframes`
     opacity: 1;
   }
 `;
-
-function EditValue(props) {
-    const EditValueModalWrapper = Styled.div`
+const EditValueModalWrapper = Styled.div`
   position: fixed;
     top: 0%;
     left: 0%;
@@ -29,12 +27,12 @@ function EditValue(props) {
     z-index: 9999;
     animation: ${fadeIn} 0.1s ease;
   `;
-
+function EditValue(props) {
     const [inputs, setInputs] = useState({
-        income: "",
-        expense: "",
-        amount: "",
-        memo: "",
+        income: 10,
+        expense: 0,
+        amount: 0,
+        memo: 0,
     });
 
     const { income, expense, amount, memo } = inputs;
