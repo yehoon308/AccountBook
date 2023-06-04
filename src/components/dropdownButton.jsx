@@ -1,13 +1,12 @@
 import Dropdown from "react-bootstrap/Dropdown";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 
 function DropdownButton() {
-    const [isOpen, setIsOpen] = useState(false); //이부분 isOpen은 안써도 되는지????
-    const [selectedOption, setSelectedOption] = useState("카테고리");
-
+    // const [isOpen, setIsOpen] = useState(false); //이부분 isOpen은 안써도 되는지????
+    // const [selectedOption, setSelectedOption] = useState("카테고리");
+    const selectedOption = useRef("카테고리");
     const handleOptionSelect = (option) => {
-        setSelectedOption(option);
-        setIsOpen(false);
+        selectedOption.current = option;
     };
 
     return (
@@ -16,12 +15,12 @@ function DropdownButton() {
                 style={{
                     display: "flex",
                     justifyContent: "center",
-                    flexDirection: "row", //드롭다운 화살표 중앙정렬하는법
+                    flexDirection: "row",
                 }}
                 variant="Primary"
                 id="dropdown-basic"
             >
-                <div>{selectedOption}</div>
+                <div>{selectedOption.current}</div>
             </Dropdown.Toggle>
 
             <Dropdown.Menu>

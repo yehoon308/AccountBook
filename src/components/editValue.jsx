@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import { Modal, Button, Row, Col } from "react-bootstrap";
 import Styled, { keyframes } from "styled-components";
 import DropdownButton from "./dropdownButton";
+import { useFormik } from "formik";
 
 //수정창 입력 시 커서 풀림, 깜빡임
 //수정창 입력값 적용하는 방법
@@ -28,23 +29,34 @@ const EditValueModalWrapper = Styled.div`
     animation: ${fadeIn} 0.1s ease;
   `;
 function EditValue(props) {
-    const [inputs, setInputs] = useState({
-        income: 10,
-        expense: 0,
-        amount: 0,
-        memo: 0,
+    const formik = useFormik({
+        initialValues: {
+            income: 0,
+            expense: 0,
+            amount: 0,
+            memo: "",
+        },
+        onSubmit: (values) => {
+            alert(JSON.stringify(values, null, 2));
+        },
     });
+    // const [inputs, setInputs] = useState({
+    //     income: 0,
+    //     expense: 0,
+    //     amount: 0,
+    //     memo: "",
+    // });
 
-    const { income, expense, amount, memo } = inputs;
+    // const { income, expense, amount, memo } = inputs;
 
-    const onDataChange = (e) => {
-        const { value, name } = e.target;
+    // const onDataChange = (e) => {
+    //     const { value, name } = e.target;
 
-        setInputs({
-            ...inputs,
-            [name]: value,
-        });
-    };
+    //     setInputs({
+    //         ...inputs,
+    //         [name]: value,
+    //     });
+    // };
 
     return (
         <EditValueModalWrapper className="modal">
@@ -67,39 +79,107 @@ function EditValue(props) {
                         }}
                     >
                         <DropdownButton />
-                        수입
-                        <input
-                            style={{ width: "250px" }}
-                            name="income"
-                            value={income}
-                            onChange={onDataChange}
-                        />
-                        지출
-                        <input
-                            style={{ width: "250px" }}
-                            name="expense"
-                            value={expense}
-                            onChange={onDataChange}
-                        />
-                        금액
-                        <input
-                            style={{ width: "250px" }}
-                            name="amount"
-                            value={amount}
-                            onChange={onDataChange}
-                        />
-                        메모
-                        <textarea
-                            style={{ width: "250px" }}
-                            name="memo"
-                            value={memo}
-                            onChange={onDataChange}
-                        />
+
+                        <form onSubmit={formik.handleSubmit}>
+                            <Row>
+                                <Col xs={3}>
+                                    <label
+                                        style={{ margin: "4px" }}
+                                        htmlFor="income"
+                                    >
+                                        수입
+                                    </label>
+                                </Col>
+                                <Col xs={9}>
+                                    <input
+                                        style={{ margin: "4px" }}
+                                        id="income"
+                                        name="income"
+                                        type="number"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.income}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={3}>
+                                    <label
+                                        style={{ margin: "4px" }}
+                                        htmlFor="expense"
+                                    >
+                                        지출
+                                    </label>
+                                </Col>
+                                <Col xs={9}>
+                                    <input
+                                        style={{ margin: "4px" }}
+                                        id="expense"
+                                        name="expense"
+                                        type="number"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.expense}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={3}>
+                                    <label
+                                        style={{ margin: "4px" }}
+                                        htmlFor="amount"
+                                    >
+                                        금액
+                                    </label>
+                                </Col>
+                                <Col xs={9}>
+                                    <input
+                                        style={{ margin: "4px" }}
+                                        id="amount"
+                                        name="amount"
+                                        type="number"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.amount}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col xs={3}>
+                                    <label
+                                        style={{ margin: "4px" }}
+                                        htmlFor="memo"
+                                    >
+                                        메모
+                                    </label>
+                                </Col>
+                                <Col xs={9}>
+                                    <input
+                                        style={{ margin: "4px" }}
+                                        id="memo"
+                                        name="memo"
+                                        type="text"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.memo}
+                                    />
+                                </Col>
+                            </Row>
+                            {/* <Button
+                                type="submit"
+                                // disabled={isSubmitting}
+                                // onClick={() => props.setIsOpen(false)}
+                            >
+                                저장
+                            </Button> */}
+                        </form>
                     </div>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button onClick={() => props.setIsOpen(false)}>입력</Button>
+                    <Button
+                        type="submit"
+                        // disabled={isSubmitting}
+                        onClick={formik.handleSubmit}
+                    >
+                        저장
+                    </Button>
                 </Modal.Footer>
             </Modal.Dialog>
         </EditValueModalWrapper>
