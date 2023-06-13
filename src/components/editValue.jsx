@@ -4,9 +4,6 @@ import Styled, { keyframes } from "styled-components";
 import DropdownButton from "./dropdownButton";
 import { useFormik } from "formik";
 
-//수정창 입력 시 커서 풀림, 깜빡임
-//수정창 입력값 적용하는 방법
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -31,8 +28,7 @@ const EditValueModalWrapper = Styled.div`
 function EditValue(props) {
     const formik = useFormik({
         initialValues: {
-            income: 0,
-            expense: 0,
+            detail: "",
             amount: 0,
             memo: "",
         },
@@ -40,23 +36,6 @@ function EditValue(props) {
             alert(JSON.stringify(values, null, 2));
         },
     });
-    // const [inputs, setInputs] = useState({
-    //     income: 0,
-    //     expense: 0,
-    //     amount: 0,
-    //     memo: "",
-    // });
-
-    // const { income, expense, amount, memo } = inputs;
-
-    // const onDataChange = (e) => {
-    //     const { value, name } = e.target;
-
-    //     setInputs({
-    //         ...inputs,
-    //         [name]: value,
-    //     });
-    // };
 
     return (
         <EditValueModalWrapper className="modal">
@@ -85,39 +64,19 @@ function EditValue(props) {
                                 <Col xs={3}>
                                     <label
                                         style={{ margin: "4px" }}
-                                        htmlFor="income"
+                                        htmlFor="detail"
                                     >
-                                        수입
+                                        내역
                                     </label>
                                 </Col>
                                 <Col xs={9}>
                                     <input
                                         style={{ margin: "4px" }}
-                                        id="income"
-                                        name="income"
-                                        type="number"
+                                        id="detail"
+                                        name="detail"
+                                        type="text"
                                         onChange={formik.handleChange}
-                                        value={formik.values.income}
-                                    />
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col xs={3}>
-                                    <label
-                                        style={{ margin: "4px" }}
-                                        htmlFor="expense"
-                                    >
-                                        지출
-                                    </label>
-                                </Col>
-                                <Col xs={9}>
-                                    <input
-                                        style={{ margin: "4px" }}
-                                        id="expense"
-                                        name="expense"
-                                        type="number"
-                                        onChange={formik.handleChange}
-                                        value={formik.values.expense}
+                                        value={formik.values.detail}
                                     />
                                 </Col>
                             </Row>
@@ -135,12 +94,13 @@ function EditValue(props) {
                                         style={{ margin: "4px" }}
                                         id="amount"
                                         name="amount"
-                                        type="number"
+                                        type=""
                                         onChange={formik.handleChange}
                                         value={formik.values.amount}
                                     />
                                 </Col>
                             </Row>
+
                             <Row>
                                 <Col xs={3}>
                                     <label
@@ -161,23 +121,12 @@ function EditValue(props) {
                                     />
                                 </Col>
                             </Row>
-                            {/* <Button
-                                type="submit"
-                                // disabled={isSubmitting}
-                                // onClick={() => props.setIsOpen(false)}
-                            >
-                                저장
-                            </Button> */}
                         </form>
                     </div>
                 </Modal.Body>
 
                 <Modal.Footer>
-                    <Button
-                        type="submit"
-                        // disabled={isSubmitting}
-                        onClick={formik.handleSubmit}
-                    >
+                    <Button type="submit" onClick={formik.handleSubmit}>
                         저장
                     </Button>
                 </Modal.Footer>

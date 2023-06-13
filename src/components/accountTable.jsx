@@ -2,6 +2,9 @@ import Table from "react-bootstrap/Table";
 import React, { useState } from "react";
 import EditValue from "./editValue";
 import Styled from "styled-components";
+import Calendar from "./Calendar";
+import CategoryDropdown from "./Category";
+import Checkbox from "./Checkbox";
 
 const CenterTh = Styled.th`
   text-align: center;
@@ -18,6 +21,11 @@ function AccountTable(props) {
         setIsOpen(true);
     };
 
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+    const handleCalendarClick = () => {
+        setIsCalendarOpen(!isCalendarOpen);
+    };
+
     function getSelectedDays(year, month) {
         const daysInMonth = getDaysInMonth(year, month);
         const days = [];
@@ -29,7 +37,7 @@ function AccountTable(props) {
         return days;
     }
 
-    // 예시: 2023년 5월의 일자를 가져옵니다.
+    // 예시: 2023년 5월의 날짜를 가져옵니다.
     const selectedYear = Number(props?.year);
     const selectedMonth = Number(props?.month);
     console.log(selectedYear, selectedMonth);
@@ -42,34 +50,35 @@ function AccountTable(props) {
             <Table striped bordered hover>
                 <thead>
                     <tr>
-                        <CenterTh>일자</CenterTh>
-                        <CenterTh>수입</CenterTh>
-                        <CenterTh>지출</CenterTh>
-                        <CenterTh>합계</CenterTh>
-                        <CenterTh>구분</CenterTh>
+                        <CenterTh></CenterTh>
+                        <CenterTh>날짜</CenterTh>
+                        <CenterTh>사용내역</CenterTh>
+                        <CenterTh>금액</CenterTh>
+                        <CenterTh>분류</CenterTh>
                         <CenterTh>메모</CenterTh>
-                        <CenterTh style={{ width: "80px" }}>수정</CenterTh>
-                        <CenterTh>전월대비</CenterTh>
+                        {/* <CenterTh style={{ width: "80px" }}>수정</CenterTh> */}
                     </tr>
                 </thead>
                 <tbody>
-                    {selectedDays?.map((list, index) => (
-                        <tr>
-                            <CenterTh>{`${list}일`}</CenterTh>
-                            <CenterTh></CenterTh>
-                            <CenterTh></CenterTh>
-                            <CenterTh></CenterTh>
-                            <CenterTh></CenterTh>
-                            <CenterTh></CenterTh>
-                            <CenterTh>
-                                <button onClick={handleButtonClick}>
-                                    수정
-                                </button>
-                            </CenterTh>
-                            <CenterTh></CenterTh>
-                        </tr>
-                    ))}
+                    <tr>
+                        <Checkbox />
+                        <CenterTh>
+                            <button onClick={handleCalendarClick}>수정</button>
+                        </CenterTh>
+                        <CenterTh></CenterTh>
+                        <CenterTh></CenterTh>
+                        <CenterTh>
+                            <CategoryDropdown />
+                        </CenterTh>
+                        <CenterTh></CenterTh>
+                        {/* <CenterTh>
+                            <button onClick={handleButtonClick}>수정</button>
+                        </CenterTh> */}
+                    </tr>
                 </tbody>
+                {isCalendarOpen ? (
+                    <Calendar setIsCalendarOpen={setIsCalendarOpen} />
+                ) : null}
                 {isOpen ? <EditValue setIsOpen={setIsOpen} /> : null}
             </Table>
         </div>

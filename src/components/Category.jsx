@@ -1,7 +1,7 @@
 import Dropdown from "react-bootstrap/Dropdown";
 import React, { useRef } from "react";
 
-function DropdownButton() {
+function CategoryDropdown() {
     const selectedOption = useRef("분류");
     const handleOptionSelect = (option) => {
         selectedOption.current = option;
@@ -105,4 +105,4 @@ function DropdownButton() {
     );
 }
 
-export default DropdownButton;
+export default CategoryDropdown;
